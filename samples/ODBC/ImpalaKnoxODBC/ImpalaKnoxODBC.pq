@@ -162,6 +162,12 @@ GetAddress = (server as text) as record =>
         else Result;
 
 ImpalaKnoxODBC = [
+    TestConnection = (dataSourcePath) =>
+        let
+            json = Json.Document(dataSourcePath),
+            server = json[server]
+        in
+            { "ImpalaKnoxODBC.Databases", server },
     Authentication = [
         Implicit = [],
         UsernamePassword = [],
@@ -172,7 +178,7 @@ ImpalaKnoxODBC = [
 ];
 
 ImpalaKnoxODBC.UI = [
-    Beta = true,
+    Beta = false,
     Category = "Database",
     ButtonText = { "ImpalaKnoxODBC", "ImpalaKnoxODBC" },
     SupportsDirectQuery = true
