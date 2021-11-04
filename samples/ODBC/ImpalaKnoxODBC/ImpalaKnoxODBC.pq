@@ -1,4 +1,3 @@
-
 section ImpalaKnoxODBC;
 
 DefaultPort = 443; // Default port for Apache Knox
@@ -162,7 +161,8 @@ GetAddress = (server as text) as record =>
         else Result;
 
 ImpalaKnoxODBC = [
-    TestConnection = (dataSourcePath) =>
+    // Required for usage through a gateway
+     TestConnection = (dataSourcePath) =>
         let
             json = Json.Document(dataSourcePath),
             server = json[server]
